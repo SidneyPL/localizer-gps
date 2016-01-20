@@ -113,8 +113,7 @@ class App extends Component {
 				<LeftNav 
 					width = {200} 
 					openRight = {true} 
-					//open = {this.state.openRightNav}
-					open={true}
+					open = {this.state.openRightNav}
 				>
 					<p>Altitude: <strong>{this.state.currentCoords.lat}</strong></p>
 					<p>Longtitude: <strong>{this.state.currentCoords.lng}</strong></p>
