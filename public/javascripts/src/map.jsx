@@ -7,6 +7,7 @@ import Pointer from './pointer'
 export default class Map extends Component {
 
 	static propTypes = {
+		center: PropTypes.any,
 		zoom: PropTypes.number,
 		pointerCoords: PropTypes.any,
 		isFixGPS: PropTypes.bool,
@@ -14,10 +15,14 @@ export default class Map extends Component {
 	};
 
 	static defaultProps = {
-    	zoom: 7,
-    	pointerCoords: {
+   		center: {
    			lat: 52.206076, 
    			lng: 19.434237
+   		},
+    	zoom: 7,
+    	pointerCoords: {
+			lat: 0.0,
+			lng: 0.0
     	},
     	isFixGPS: false
 	};
@@ -35,10 +40,11 @@ export default class Map extends Component {
   	render() {
 	    return (
 	       <GoogleMap
-		       	center={this.props.pointerCoords}
+		       	defaultCenter={this.props.pointerCoords}
 		       	defaultZoom={this.props.zoom}
 		       	onChildClick={this.props.onPointerClick}
 		       	onClick={this.props.onMapClick}
+		       	center={this.props.pointerCoords}
 		    >
 
 		       	<Pointer 
