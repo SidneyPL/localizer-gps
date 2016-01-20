@@ -51,6 +51,7 @@ class App extends Component {
 
 	_onUpdateDataGPS = (data) => {
 		if(data!='0'){
+			alert(data.latitude+':'+data.longtitude);
 			this.setState({
 				isFixGPS: data.fixGPS,
 				currentCoords: {
