@@ -33,10 +33,6 @@ export default class Map extends Component {
 		super(props);
 	}
 
-	_onChildClick = (key, childProps) => {
-		
-	};
-
   	render() {
 	    return (
 	       <GoogleMap
@@ -44,7 +40,6 @@ export default class Map extends Component {
 		       	defaultZoom={this.props.zoom}
 		       	onChildClick={this.props.onPointerClick}
 		       	onClick={this.props.onMapClick}
-		       	center={this.props.pointerCoords}
 		    >
 
 		       	<Pointer 
