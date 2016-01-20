@@ -23,11 +23,11 @@ var parseRawDataGPS = (rawData) => {
 
 		var latitude = splitData[0]; 
 		latitude = latitude.substring(0, latitude.length - 1); // remove last char from latitude
-		latitude = latitude.substring(0, 2) + '.' + latitude.substring(2, 2) + latitude.substring(5); // convert latitude to GoogleMaps format
+		latitude = latitude.substring(0, 2) + '.' + latitude.substring(2, 4) + latitude.substring(5); // convert latitude to GoogleMaps format
 
 		var longtitude = splitData[1];
 		longtitude = longtitude.substring(0, longtitude.length - 1); // remove last char from longtitude
-		longtitude = longtitude.substring(0, 2) + '.' + longtitude.substring(2, 2) + longtitude.substring(5); // convert longtitude to GoogleMaps format
+		longtitude = longtitude.substring(0, 3) + '.' + longtitude.substring(3, 5) + longtitude.substring(6); // convert longtitude to GoogleMaps format
 
 		currentDataGPS = {
 			fixGPS: true,
