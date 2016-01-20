@@ -34,11 +34,14 @@ var parseRawDataGPS = (rawData) => {
 //start TCP/IP server
 var serverTCP = net.createServer((socket) => {
 
-	currentDataGPS.connectedDevice = true;
-    console.log('LokalizerGPS connected on ' + socket.remoteAddress + ':' + socket.remotePort);
+    console.log('LocalizerGPS connected on ' + socket.remoteAddress + ':' + socket.remotePort);
+
+    currentDataGPS.connectedDevice = true;
     io.emit('connectedDevice', 0);
 
     socket.on('data', (data) => {
+    	console.log('LocalizerGPS send data: ', data);
+
     	parseRawDataGPS(data);
     	var result = 'Lat: '+currentDataGPS.latitude+' Lng: '+currentDataGPS.longtitude+' Satelites: '+currentDataGPS.quality;
     	io.emit('dataGPS', result);
@@ -46,6 +49,7 @@ var serverTCP = net.createServer((socket) => {
 
     socket.on('end', () => {
         console.log('LocalizerGPS on ' + socket.remoteAddress + ':' + socket.remotePort + ' disconnected');
+        
         io.emit('disconnectedDevice', 0);
     });
 
