@@ -16,10 +16,10 @@ var currentDataGPS = {
 };
 
 var parseRawDataGPS = (rawData) => {
-	if(rawData.toString() == '0'){ // no fix GPS
+	if(rawData == '0'){ // no fix GPS
 		currentDataGPS.fixGPS = false;
 	} else { // GPS is fix
-		var splitData = rawData.toString().split(";");
+		var splitData = rawData.split(";");
 		currentDataGPS = {
 			fixGPS: true,
 			latitude: splitData[0],
@@ -40,16 +40,16 @@ var serverTCP = net.createServer((socket) => {
     io.emit('connectedDevice', 0);
 
     socket.on('data', (data) => {
-    	console.log('LocalizerGPS send data: ', data);
+    	console.log('LocalizerGPS send data: ', data.toString());
 
-    	parseRawDataGPS(data);
+    	parseRawDataGPS(data.toString());
     	var result = 'Lat: '+currentDataGPS.latitude+' Lng: '+currentDataGPS.longtitude+' Satelites: '+currentDataGPS.quality;
     	io.emit('dataGPS', result);
     });
 
     socket.on('end', () => {
         console.log('LocalizerGPS on ' + socket.remoteAddress + ':' + socket.remotePort + ' disconnected');
-        
+
         io.emit('disconnectedDevice', 0);
     });
 
