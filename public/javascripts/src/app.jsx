@@ -22,6 +22,9 @@ class App extends Component {
 				lat: 52.353948,
 				lng: 19.170566
 			},
+			satelites: 0,
+			quality: 0.00,
+
 			openRightNav: false
 		};
 	}
@@ -32,9 +35,6 @@ class App extends Component {
 		this.socket.on('connectedDevice', this._onConnectedDevice);
 		this.socket.on('dataGPS', this._onUpdateDataGPS);
 		this.socket.on('disconnectedDevice', this._onDisconnectedDevice)
-		this.socket.on('test', function(data){
-			alert(data);
-		});
 	}
 
 	componentWillUnmount(){
@@ -50,14 +50,22 @@ class App extends Component {
 	};
 
 	_onUpdateDataGPS = (data) => {
-		alert(data);
-		this.setState({
-			isFixGPS: true,
-			currentCoords: {
-				lat: data.lat,
-				lng: data.lng
-			}
-		});
+		if(data!='0'){
+			this.setState({
+				isFixGPS: data.fixGPS,
+				currentCoords: {
+					lat: data.latitude,
+					lng: data.longtitude
+				},
+				satelites: data.satelites,
+				quality: data.quality
+			});			
+		} else {
+			this.setState({
+				isFixGPS: false
+			});
+		}
+
 	};
 
 	_onDisconnectedDevice = (deviceID) => {
