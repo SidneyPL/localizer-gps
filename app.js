@@ -37,9 +37,9 @@ var parseRawDataGPS = (rawData) => {
 
 var degreesDecimalMinutesToDegreesDecimal = (ddm) => {
 
-	var degrees = Number(ddm.substring(0,2));
+	var degrees = Number(ddm.substring(0,2)); // get degrees
 
-	var minutes = Number(ddm.substring(2, ddm.length - 1));
+	var minutes = Number(ddm.substring(2, ddm.length - 1)); // get minutes, must remove last char from string
 	minutes = minutes / 60;
 
 	var dm = degrees + minutes;
