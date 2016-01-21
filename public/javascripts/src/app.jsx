@@ -24,6 +24,7 @@ class App extends Component {
 			},
 			satelites: 0,
 			quality: 0.00,
+			lastDataTime: 0,
 
 			openRightNav: false,
 			zoom: 7
@@ -37,16 +38,18 @@ class App extends Component {
 		this.socket.on('dataGPS', this._onUpdateDataGPS);
 		this.socket.on('disconnectedDevice', this._onDisconnectedDevice)
 
-		if(this.state.isConnectedDevice == true){
-			this.setState({
-				openRightNav: true
-			});
-		}
+		var intervalLastDataTime = setInterval(this._intervalLastDataTime, )
 	}
 
 	componentWillUnmount(){
-		clearInterval(this.interval);
+		clearInterval(this.intervalLastDataTime, 1000);
 	}
+
+	_intervalLastDataTime = () => {
+		this.setState({
+			lastDataTime: this.state.lastDataTime + 1
+		});
+	};
 
 	// start Socket.IO methods
 
@@ -67,6 +70,7 @@ class App extends Component {
 				},
 				satelites: data.satelites,
 				quality: data.quality,
+				lastDataTime: 0,
 				zoom: 18
 			});			
 		} else {
@@ -129,6 +133,7 @@ class App extends Component {
 					satelites = {this.state.satelites}
 					quality = {this.state.quality}
 					fixGPS = {this.state.isFixGPS}
+					lastDataTime = {this.state.lastDataTime}
 				/>
 
 			</div>

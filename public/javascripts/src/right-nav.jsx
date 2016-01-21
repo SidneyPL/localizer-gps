@@ -12,7 +12,8 @@ export default class RightNav extends Component {
 		fixGPS: PropTypes.bool,
 		currentCoords: PropTypes.any,
 		satelites: PropTypes.number,
-		quality: PropTypes.number
+		quality: PropTypes.number,
+		lastDataTime: PropTypes.number
 	};
 
 	static defaultProps = {
@@ -22,6 +23,7 @@ export default class RightNav extends Component {
 			lat: 0.0,
 			lng: 0.0
     	},
+    	lastDataTime: 0,
     	satelites: 0,
     	quality: 0.00
 	};
@@ -34,9 +36,11 @@ export default class RightNav extends Component {
 
 	render(){
 
+		var lastTime = 'Ustalona '+this.props.lastDataTime+'s temu';
+
 		return(
 				<LeftNav 
-					width = {200} 
+					width = {220} 
 					openRight = {true} 
 					open = {this.props.openRightNav}
 				>
@@ -49,7 +53,7 @@ export default class RightNav extends Component {
 						 		<div>
 								<ListItem 
 									primaryText = 'Lokalizacja GPS'
-									secondaryText = 'Ustalona'
+									secondaryText = {lastTime}
 								/>
 
 								<ListItem 
