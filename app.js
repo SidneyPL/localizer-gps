@@ -21,13 +21,9 @@ var parseRawDataGPS = (rawData) => {
 	} else { // GPS is fix, example rawData: '5017.23402N;01840.5987E;07;1.19'
 		var splitData = rawData.split(";");
 
-		var latitude = splitData[0]; 
-		latitude = latitude.substring(0, latitude.length - 1); // remove last char from latitude
-		latitude = latitude.substring(0, 2) + '.' + latitude.substring(2, 4) + latitude.substring(5); // convert latitude to GoogleMaps format
+		var latitude = degreesDecimalMinutesToDegreesDecimal(splitData[0]); 
 
-		var longtitude = splitData[1];
-		longtitude = longtitude.substring(0, longtitude.length - 1); // remove last char from longtitude
-		longtitude = longtitude.substring(0, 3) + '.' + longtitude.substring(3, 5) + longtitude.substring(6); // convert longtitude to GoogleMaps format
+		var longtitude = degreesDecimalMinutesToDegreesDecimal(splitData[1]);
 
 		currentDataGPS = {
 			fixGPS: true,
@@ -38,6 +34,18 @@ var parseRawDataGPS = (rawData) => {
 		};
 	}
 };
+
+var degreesDecimalMinutesToDegreesDecimal = (ddm) => {
+
+	var degrees = Number(ddm.substring(0,2));
+
+	var minutes = Number(ddm.substring(2, ddm.length - 1));
+	minutes = minutes / 60;
+
+	var dm = degrees + minutes;
+
+	return dm;
+}
 // Data end
 
 //start TCP/IP server
