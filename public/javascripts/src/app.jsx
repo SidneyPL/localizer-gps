@@ -61,7 +61,7 @@ class App extends Component {
 				},
 				satelites: data.satelites,
 				quality: data.quality,
-				zoom: 15
+				zoom: 18
 			});			
 		} else {
 			this.setState({
