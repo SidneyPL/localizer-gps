@@ -1,0 +1,11 @@
+diff a/public/javascripts/src/right-nav.jsx b/public/javascripts/src/right-nav.jsx	(rejected hunks)
+@@ -12,7 +12,8 @@
+ 		fixGPS: PropTypes.bool,
+ 		currentCoords: PropTypes.any,
+ 		satelites: PropTypes.number,
+-		quality: PropTypes.number
++		quality: PropTypes.number,
++		lastDataTime: PropTypes.number
+ 	};
+ 
+ 	static defaultProps = {

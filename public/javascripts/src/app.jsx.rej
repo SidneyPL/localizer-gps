@@ -1,0 +1,9 @@
+diff a/public/javascripts/src/app.jsx b/public/javascripts/src/app.jsx	(rejected hunks)
+@@ -24,6 +24,7 @@
+ 			},
+ 			satelites: 0,
+ 			quality: 0.00,
++			lastDataTime: 0,
+ 
+ 			openRightNav: false,
+ 			zoom: 7
