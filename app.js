@@ -16,15 +16,14 @@ var currentDataGPS = {
 };
 
 var parseRawDataGPS = (rawData) => {
-	rawData = rawData.toString();
 	if(rawData.substring(0,1) == '0'){ // no fix GPS
 		currentDataGPS.fixGPS = false;
 	} else { // GPS is fix, example rawData: '5017.23402N;01840.5987E;07;1.19'
 		var splitData = rawData.split(";");
 
-		var latitude = degreesDecimalMinutesToDegreesDecimal(splitData[0].toString()); 
+		var latitude = degreesDecimalMinutesToDegreesDecimal(splitData[0]); 
 
-		var longtitude = degreesDecimalMinutesToDegreesDecimal(splitData[1].toString());
+		var longtitude = degreesDecimalMinutesToDegreesDecimal(splitData[1]);
 
 		currentDataGPS = {
 			fixGPS: true,
@@ -62,11 +61,11 @@ var serverTCP = net.createServer((socket) => {
 
     	parseRawDataGPS(data.toString());
 
-    	/*if(currentDataGPS.fixGPS == true){
+    	if(currentDataGPS.fixGPS == true){
     		io.emit('dataGPS', currentDataGPS);
     	} else {
     		io.emit('dataGPS', '0');
-    	}*/
+    	}
     	
     });
 
