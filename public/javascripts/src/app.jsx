@@ -36,6 +36,12 @@ class App extends Component {
 		this.socket.on('connectedDevice', this._onConnectedDevice);
 		this.socket.on('dataGPS', this._onUpdateDataGPS);
 		this.socket.on('disconnectedDevice', this._onDisconnectedDevice)
+
+		if(this.state.isConnectedDevice == true){
+			this.setState({
+				openRightNav: true
+			});
+		}
 	}
 
 	componentWillUnmount(){
