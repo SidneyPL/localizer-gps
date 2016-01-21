@@ -34,7 +34,7 @@ var parseRawDataGPS = (rawData) => {
 			satelites: splitData[2],
 			quality: splitData[3]
 		};*/
-		console.log('"+rawData+"');
+		console.log('"' + rawData + '"');
 	}
 };
 
