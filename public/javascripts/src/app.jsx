@@ -63,7 +63,8 @@ class App extends Component {
 			});			
 		} else {
 			this.setState({
-				isFixGPS: false
+				isFixGPS: false,
+				openRightNav: true
 			});
 		}
 
@@ -82,9 +83,11 @@ class App extends Component {
 	// start actions on map methods
 
 	_onMapClick = () => {
-		this.setState({
-			openRightNav: false
-		});
+		if(this.state.isFixGPS == true){
+			this.setState({
+				openRightNav: false
+			});
+		}
 	};
 
 	// end actions on map methods
