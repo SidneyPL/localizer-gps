@@ -4,8 +4,8 @@ import shouldPureComponentUpdate from 'react-pure-render/function';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
 import Map from './map';
-import LeftNav from 'material-ui/lib/left-nav';
 import Notifications from './notifications';
+import RightNav from './right-nav';
 
 injectTapEventPlugin();
 
@@ -45,7 +45,8 @@ class App extends Component {
 
 	_onConnectedDevice = (deviceID) => {
 		this.setState({
-			isConnectedDevice: true
+			isConnectedDevice: true,
+			openRightNav: true
 		});
 	};
 
@@ -110,16 +111,13 @@ class App extends Component {
 					onPointerClick = {this._onPointerClick}
 				/>
 
-				<LeftNav 
-					width = {200} 
-					openRight = {true} 
-					open = {this.state.openRightNav}
-				>
-					<p>Altitude: <strong>{this.state.currentCoords.lat}</strong></p>
-					<p>Longtitude: <strong>{this.state.currentCoords.lng}</strong></p>
-					<p>Satelites: <strong>{this.state.satelites}</strong></p>
-					<p>Quality: <strong>{this.state.quality}</strong></p>
-				</LeftNav>
+				<RightNav 
+					openRightNav = {this.state.openRightNav}
+					currentCoords = {this.state.currentCoords}
+					satelites = {this.state.satelites}
+					quality = {this.state.quality}
+					fixGPS = {this.state.isFixGPS}
+				/>
 
 			</div>
 		);
