@@ -7,7 +7,6 @@ import Pointer from './pointer'
 export default class Map extends Component {
 
 	static propTypes = {
-		center: PropTypes.any,
 		zoom: PropTypes.number,
 		pointerCoords: PropTypes.any,
 		isFixGPS: PropTypes.bool,

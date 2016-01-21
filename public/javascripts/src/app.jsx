@@ -25,7 +25,8 @@ class App extends Component {
 			satelites: 0,
 			quality: 0.00,
 
-			openRightNav: false
+			openRightNav: false,
+			zoom: 7
 		};
 	}
 
@@ -59,7 +60,8 @@ class App extends Component {
 					lng: data.longtitude
 				},
 				satelites: data.satelites,
-				quality: data.quality
+				quality: data.quality,
+				zoom: 10
 			});			
 		} else {
 			this.setState({
@@ -112,6 +114,7 @@ class App extends Component {
 					pointerCoords = {this.state.currentCoords}
 					onMapClick = {this._onMapClick}
 					onPointerClick = {this._onPointerClick}
+					zoom = {this.state.zoom}
 				/>
 
 				<RightNav 
