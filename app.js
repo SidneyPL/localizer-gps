@@ -16,7 +16,8 @@ var currentDataGPS = {
 };
 
 var parseRawDataGPS = (rawData) => {
-	if(rawData.toString() == '0'){ // no fix GPS
+	rawData = rawData.toString();
+	if(rawData == '0'){ // no fix GPS
 		currentDataGPS.fixGPS = false;
 		console.log('bad');
 	} else { // GPS is fix, example rawData: '5017.23402N;01840.5987E;07;1.19'
@@ -33,7 +34,7 @@ var parseRawDataGPS = (rawData) => {
 			satelites: splitData[2],
 			quality: splitData[3]
 		};*/
-		console.log('good');
+		console.log('"+rawData+"');
 	}
 };
 
